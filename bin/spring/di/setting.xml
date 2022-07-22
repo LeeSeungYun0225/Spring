@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	
+	<!--  스프링은 bean태그를 이용해서 생성할 객체를 알려주면 된다. -->
+	<!--  id는 변수명을, class는 어떤 클래스 인스턴스인지를 의미  -->
+	<!--  동일한 이름을 갖는 클래스가 있을 수 있기때문에 패키지명까지 명시해주어야 함  -->
+	
+	<!--  Exam exam = new NewlecExam();-->
+	<bean id="exam" class="spring.di.entity.NewlecExam" />
+	
+	<!--  ExamConsole console = new GridExamConsole(); -->
+	<bean id="console" class="spring.di.ui.GridExamConsole">
+		<!--  console.setExam(exam); -->
+		<property name="exam" ref="exam"/>
+		<!--  name="?" << 세터의 이름을 의미함  -->
+		<!--  일반변수 = value = "exam" 참조변수 =>> ref="exam" -->
+	</bean>
+	
+	
+
+
+</beans>
+	

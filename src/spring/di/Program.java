@@ -1,5 +1,8 @@
 package spring.di;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -30,10 +33,18 @@ public class Program {
 		ApplicationContext context = 
 				new ClassPathXmlApplicationContext("spring/di/setting.xml");
 		
-		//ExamConsole console = (ExamConsole) context.getBean("console");
-		ExamConsole console = context.getBean(ExamConsole.class);
+		ExamConsole console = (ExamConsole) context.getBean("console"); // 형변환 해야하는 불편함이 있음 
+		//ExamConsole console = context.getBean(ExamConsole.class);
 		console.print();
+
+		List<Exam> exams = (List<Exam>) context.getBean("exams");
 		
+		
+		
+		for(Exam e:exams)
+		{
+			System.out.println(e);
+		}
 		
 	}
 		
