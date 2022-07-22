@@ -13,7 +13,7 @@ import spring.di.ui.GridExamConsole;
 import spring.di.ui.InlineExamConsole;
 
 
-//#1 Xml을 활용 
+//#2 Annotation을 활용 
 
 
 public class Program {
