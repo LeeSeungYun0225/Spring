@@ -13,6 +13,24 @@
 	<bean id="logBeforeAdvice" class="spring.aop.advice.LogBeforeAdvice"/>
 	<bean id="logAfterReturningAdvice" class="spring.aop.advice.LogAfterReturningAdvice"/>
 	<bean id="logAfterThrowingAdvice" class="spring.aop.advice.LogAfterThrowingAdvice"/>
+	
+	
+	<!-- 이름을 기준으로 하는 포인트컷(어드바이스를 특정 메소드에만 제한하는) 객체 생성  -->
+	<bean id="classicPointCut" class="org.springframework.aop.support.NameMatchMethodPointcut">
+		<!-- name은 세터 네임 , value는 포인트컷 대상 메소드 네임  -->
+		<property name="mappedName" value="total"/>
+	</bean>
+	
+	
+	<!-- 포인트컷과 어드바이스를 연결해주는 역할 -->
+	<bean id="classicBeforeAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<!--  name은 세터 네임이므로 임의로 변경하지 않도록 함  -->
+		<property name="advice" ref="logBeforeAdvice" />
+		
+		<property name="pointcut" ref="classicPointCut"/>
+	</bean>
+	
+	
 	<bean id="proxy" class="org.springframework.aop.framework.ProxyFactoryBean">
 		<property name="target" ref="target" />
 		<property name="interceptorNames">
@@ -20,7 +38,7 @@
 			<!-- 타겟이 실행될 때 거쳐서 수행될 클래스들 -->
 			<list>
 				<value>logAroundAdvice</value>
-				<value>logBeforeAdvice</value>
+				<value>classicBeforeAdvisor</value>
 				<value>logAfterReturningAdvice</value>
 				<value>logAfterThrowingAdvice</value>
 			</list>
