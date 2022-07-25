@@ -11,7 +11,7 @@
 	
 	
 	<!-- 해당 패키지 내부에 @Component annotation을 갖는 클래스가 있는지를 확인해서 객체화해주는 기능 설정 + autowired도 읽어줌  -->
-	<context:component-scan base-package="spring.di.entity, spring.di.ui"></context:component-scan>
+<!-- 	<context:component-scan base-package="spring.di.entity, spring.di.ui"></context:component-scan> -->
 	
 	
 	<!-- Bean태그로 생성된 객체 내부를 뒤져 Autowired annotation이 있으면 자동 매칭해주기 위한 기능 설정 -->
@@ -68,13 +68,13 @@
 		
 <!-- 	</bean> -->
 	
-	<util:list id="exams" list-class = "java.util.ArrayList">
-					<!-- list의 구성품이기에 별도의 id가 필요하지 않음  -->
-					<bean class="spring.di.entity.NewlecExam" p:kor="10" p:eng="2" p:math="40" p:com="6" />
+<!-- 	<util:list id="exams" list-class = "java.util.ArrayList"> -->
+<!-- 					list의 구성품이기에 별도의 id가 필요하지 않음  -->
+<!-- 					<bean class="spring.di.entity.NewlecExam" p:kor="10" p:eng="2" p:math="40" p:com="6" /> -->
 					
-					<!-- ref bean은 xml에 존재하는 다른 bean을 참조함 -->
+<!-- 					ref bean은 xml에 존재하는 다른 bean을 참조함 -->
 				
-	</util:list>
+<!-- 	</util:list> -->
 	
 	
 	<!-- 어레이 리스트의 요소를 인스턴스화한 bean -->

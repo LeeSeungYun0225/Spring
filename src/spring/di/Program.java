@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import spring.di.entity.Exam;
@@ -31,20 +32,21 @@ public class Program {
 		
 		
 		ApplicationContext context = 
-				new ClassPathXmlApplicationContext("spring/di/setting.xml");
+				new AnnotationConfigApplicationContext(NewlecDiConfig.class);
+				//new ClassPathXmlApplicationContext("spring/di/setting.xml");
 		
 		//ExamConsole console = (ExamConsole) context.getBean("console"); // 형변환 해야하는 불편함이 있음 
 		ExamConsole console = context.getBean(ExamConsole.class);
 		console.print();
 
-		List<Exam> exams = (List<Exam>) context.getBean("exams");
+		//List<Exam> exams = (List<Exam>) context.getBean("exams");
 		
 		
 		
-		for(Exam e:exams)
-		{
-			System.out.println(e);
-		}
+//		for(Exam e:exams)
+//		{
+//			System.out.println(e);
+//		}
 		
 	}
 		
