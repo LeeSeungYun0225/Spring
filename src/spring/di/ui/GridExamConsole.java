@@ -2,9 +2,12 @@ package spring.di.ui;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
 import spring.di.entity.Exam;
 
+
+@Component("console")
 public class GridExamConsole implements ExamConsole {
 
 	//Autowired는 field/생성자/setter에 사용 가능 
@@ -12,7 +15,7 @@ public class GridExamConsole implements ExamConsole {
 	
 	
 	//@Autowired(required=false) :: 해당 객체가 반드시 존재해야 하는지를 설정 가능 
-	@Autowired(required=true)
+	@Autowired
 	@Qualifier("exam1")
 	// 기본 생성자를 호출하며 인젝션 수행 - 기본생성자가 없으면 오류 발생함.
 	//오버로드 생성자가 없으면 기본생성자는 자동 생성되므로 문제없음

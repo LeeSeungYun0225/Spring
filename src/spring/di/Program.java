@@ -33,8 +33,8 @@ public class Program {
 		ApplicationContext context = 
 				new ClassPathXmlApplicationContext("spring/di/setting.xml");
 		
-		ExamConsole console = (ExamConsole) context.getBean("console"); // 형변환 해야하는 불편함이 있음 
-		//ExamConsole console = context.getBean(ExamConsole.class);
+		//ExamConsole console = (ExamConsole) context.getBean("console"); // 형변환 해야하는 불편함이 있음 
+		ExamConsole console = context.getBean(ExamConsole.class);
 		console.print();
 
 		List<Exam> exams = (List<Exam>) context.getBean("exams");

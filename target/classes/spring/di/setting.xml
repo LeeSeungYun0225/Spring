@@ -9,15 +9,21 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
 
 	
-	<context:annotation-config></context:annotation-config>
+	
+	<!-- 해당 패키지 내부에 @Component annotation을 갖는 클래스가 있는지를 확인해서 객체화해주는 기능 설정 + autowired도 읽어줌  -->
+	<context:component-scan base-package="spring.di.entity, spring.di.ui"></context:component-scan>
+	
+	
+	<!-- Bean태그로 생성된 객체 내부를 뒤져 Autowired annotation이 있으면 자동 매칭해주기 위한 기능 설정 -->
+<!-- 	<context:annotation-config></context:annotation-config> -->
 
 	<!--  스프링은 bean태그를 이용해서 생성할 객체를 알려주면 된다. -->
 	<!--  id는 이름을, class는 어떤 클래스 인스턴스인지를 의미  -->
 	<!--  동일한 이름을 갖는 클래스가 있을 수 있기때문에 패키지명까지 명시해주어야 함  -->
 	
 	<!--  Exam exam = new NewlecExam();-->
-	<bean id="exam1" class="spring.di.entity.NewlecExam" p:kor="10" p:eng="20" p:math="30" p:com="40" />
-	<bean id="exam" class="spring.di.entity.NewlecExam" p:kor="101" p:eng="20" p:math="30" p:com="40" />	
+<!-- 	<bean id="exam1" class="spring.di.entity.NewlecExam" p:kor="10" p:eng="20" p:math="30" p:com="40" /> -->
+<!-- 	<bean id="exam" class="spring.di.entity.NewlecExam" p:kor="101" p:eng="20" p:math="30" p:com="40" />	 -->
 		
 		
 		<!-- 생성자를 이용한 변수값 지정  -->
@@ -52,22 +58,22 @@
 	
 
 	
-	<!--  ExamConsole console = new GridExamConsole(); -->
-	<bean id="console"  class="spring.di.ui.GridExamConsole">
+<!-- 	 ExamConsole console = new GridExamConsole(); --> 
+<!-- 	<bean id="console"  class="spring.di.ui.GridExamConsole"> -->
 		
 	
-		<!--  console.setExam(exam); -->
-<!-- 		<property name="exam" ref="exam"/> -->
-		<!--  name="?" << 세터의 이름을 의미함  -->
+<!-- 		 console.setExam(exam); --> 
+<!-- 		<property name="exam" ref="exam"/> --> 
+<!-- 		 name="?" << 세터의 이름을 의미함  -->
 		
-	</bean>
+<!-- 	</bean> -->
 	
 	<util:list id="exams" list-class = "java.util.ArrayList">
 					<!-- list의 구성품이기에 별도의 id가 필요하지 않음  -->
 					<bean class="spring.di.entity.NewlecExam" p:kor="10" p:eng="2" p:math="40" p:com="6" />
 					
 					<!-- ref bean은 xml에 존재하는 다른 bean을 참조함 -->
-					<ref bean = "exam"/>
+				
 	</util:list>
 	
 	
