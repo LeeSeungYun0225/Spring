@@ -5,9 +5,13 @@ import java.lang.reflect.Method;
 
 import org.springframework.cglib.proxy.InvocationHandler;
 import org.springframework.cglib.proxy.Proxy;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import spring.aop.entity.Exam;
 import spring.aop.entity.NewlecExam;
+import spring.di.NewlecDiConfig;
 
 
 // aop의 개념
@@ -17,45 +21,53 @@ public class Program {
 	public static void main(String[] args) {
 		
 		
-		Exam exam = new NewlecExam(1,2,3,4);
+		ApplicationContext context = 
+				//new AnnotationConfigApplicationContext(NewlecDiConfig.class);
+				new ClassPathXmlApplicationContext("setting.xml",Program.class);
 		
 		
-		//곁다리업무를 담당할 Exam proxy
-		Exam proxy = (Exam) Proxy.newProxyInstance(NewlecExam.class.getClassLoader(), 
-				new Class[] {Exam.class}, 
-				new InvocationHandler() {
-				@Override
-				public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-					// TODO Auto-generated method stub
-					//실제 곁다리 업무를 실행할 부분 
-					
-					long start = System.currentTimeMillis();
-					
-					Object result = method.invoke(exam, args);
-					
-					
-					
-				
-					
-					
-					try {
-						Thread.sleep(200);
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					
-					long end = System.currentTimeMillis();
-					
-					String msg = (end-start) + "ms시간이 걸렸습니다.";
-					System.out.println(msg);
-					
-					
-					return result;
-				}
-		});
+		
+		Exam proxy = (Exam) context.getBean("proxy");
+		
 		
 		System.out.printf("total is %d\n", proxy.total());
 		System.out.printf("avg is %f\n", proxy.avg());
+		
+//		//곁다리업무를 담당할 Exam proxy
+//		Exam proxy = (Exam) Proxy.newProxyInstance(NewlecExam.class.getClassLoader(), 
+//				new Class[] {Exam.class}, 
+//				new InvocationHandler() {
+//				@Override
+//				public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+//					// TODO Auto-generated method stub
+//					//실제 곁다리 업무를 실행할 부분 
+//					
+//					long start = System.currentTimeMillis();
+//					
+//					Object result = method.invoke(exam, args);
+//					
+//					
+//					
+//				
+//					
+//					
+//					try {
+//						Thread.sleep(200);
+//					} catch (InterruptedException e) {
+//						// TODO Auto-generated catch block
+//						e.printStackTrace();
+//					}
+//					
+//					long end = System.currentTimeMillis();
+//					
+//					String msg = (end-start) + "ms시간이 걸렸습니다.";
+//					System.out.println(msg);
+//					
+//					
+//					return result;
+//				}
+//		});
+		
+		
 	}
 }
