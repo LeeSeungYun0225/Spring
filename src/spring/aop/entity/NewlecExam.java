@@ -90,7 +90,10 @@ public class NewlecExam implements Exam {
 		
 		int result = kor+eng+math+com;
 		
-		
+		if(kor>100)
+		{
+			throw new IllegalArgumentException("유효하지 않은 점수입니다.");
+		}
 	
 		
 	
