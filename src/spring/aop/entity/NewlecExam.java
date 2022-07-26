@@ -1,14 +1,23 @@
 package spring.aop.entity;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
 import spring.aop.entity.Exam;
 
+
+@Component("exam")
 public class NewlecExam implements Exam {
 	
 	
 
+	@Value("20")
 	private int kor;
+	@Value("20")
 	private int eng;
+	@Value("20")
 	private int math;
+	@Value("20")
 	private int com;
 	
 	
@@ -91,7 +100,7 @@ public class NewlecExam implements Exam {
 		int result = kor+eng+math+com;
 		
 	
-		
+		System.out.println("total result : " + result);
 	
 		
 		return result;

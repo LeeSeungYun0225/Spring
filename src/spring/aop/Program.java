@@ -22,16 +22,16 @@ public class Program {
 		
 		
 		ApplicationContext context = 
-				//new AnnotationConfigApplicationContext(NewlecDiConfig.class);
-				new ClassPathXmlApplicationContext("setting.xml",Program.class);
+				new AnnotationConfigApplicationContext(AopConfig.class);
+				//new ClassPathXmlApplicationContext("setting.xml",Program.class);
 		
 		
 		
-		Exam proxy = (Exam) context.getBean("proxy");
+		Exam proxy = (Exam) context.getBean(Exam.class);
 		
 		
-		System.out.printf("total is %d\n", proxy.total());
-		System.out.printf("avg is %f\n", proxy.avg());
+		proxy.total();
+		//System.out.printf("avg is %f\n", proxy.avg());
 		
 //		//곁다리업무를 담당할 Exam proxy
 //		Exam proxy = (Exam) Proxy.newProxyInstance(NewlecExam.class.getClassLoader(), 
